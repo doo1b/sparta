@@ -103,7 +103,7 @@ input.addEventListener('keyup', (event) => {
 
 // 드롭다운 기능
   document.querySelector('.dropbtn_click').onclick = () => {
-    var v = document.querySelector('.dropdown-content');
+    const v = document.querySelector('.dropdown-content');
     v.classList.toggle('show');
   }
   document.getElementsByClassName('Category').onclick = () => {
@@ -111,17 +111,17 @@ input.addEventListener('keyup', (event) => {
   };
 
   showMenu = (value) => {
-    var dropbtn_content = document.querySelector('.dropbtn_content');
+    const dropbtn_content = document.querySelector('.dropbtn_content');
     dropbtn_content.innerText = value;
     getDate(value);
   }
 
 window.onclick = (e) => {
   if (!e.target.matches('.dropbtn_click')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
+    const dropdowns = document.getElementsByClassName("dropdown-content");
 
-    for (var i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
+    for (let i = 0; i < dropdowns.length; i++) {
+      const openDropdown = dropdowns[i];
       if (openDropdown.classList.contains('show')) {
         openDropdown.classList.remove('show');
       }
