@@ -59,12 +59,20 @@ function getDate(category) {
       const movieContainer = document.getElementById('movie-container');
       movieContainer.innerHTML = '';
 
-      if (category === 'Upcoming' || category === 'Now Playing') {
+      const today = new Date();
+      if (category === 'Now Playing') {
         movies.sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
       } else if (category === 'Popular' || category === 'Top Rated') {
         movies.sort((a, b) => b.vote_average - a.vote_average);
+      } else if (category === 'Upcoming') {
+        movies.sort((a, b) => {
+          // 개봉 예정작 정렬 현재 날짜와 가까운 순으로 변경
+          let dateA = new Date(a.release_date) ;
+          let dateB = new Date(b.release_date) ;
+          return Math.abs(today - dateA) - Math.abs(today - dateB);
+        });
       }
-      
+
       movies.forEach(movie => {
         const card = createMovieCard(movie);
         movieContainer.appendChild(card);
