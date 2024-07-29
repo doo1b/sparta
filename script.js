@@ -40,18 +40,37 @@ function createMovieCard(movie) {
   return card;
 }
 
+const categoryIds = {
+  'Popular' : 'popular',
+  'Now Playing':'now_playing',
+  'Top Rated':'top_rated',
+  'Upcoming':'upcoming'
+};
+
 // 카드 뿌리기
-fetch('https://api.themoviedb.org/3/movie/popular?language=ko-US&page=1', options)
-  .then(response => response.json())
-  .then(data => {
-    const movies = data.results;
-    const movieContainer = document.getElementById('movie-container');
-    movies.forEach(movie => {
-      const card = createMovieCard(movie);
-      movieContainer.appendChild(card);
-    });
-  })
-  .catch(err => console.error(err));
+function getDate(category) {
+  const id = categoryIds[category];
+  const url = `https://api.themoviedb.org/3/movie/${id}?language=ko-KR&page=1`;
+  fetch(url, options)
+    .then(response => response.json())
+    .then(data => {
+      const movies = data.results;
+      const movieContainer = document.getElementById('movie-container');
+      movieContainer.innerHTML = '';
+
+      if (category === 'Upcoming' || category === 'Now Playing') {
+        movies.sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
+      } else if (category === 'Popular' || category === 'Top Rated') {
+        movies.sort((a, b) => b.vote_average - a.vote_average);
+      }
+      
+      movies.forEach(movie => {
+        const card = createMovieCard(movie);
+        movieContainer.appendChild(card);
+      });
+    })
+    .catch(err => console.error(err));
+}
 
 
 // 검색 기능
@@ -76,3 +95,35 @@ input.addEventListener('keyup', (event) => {
     document.getElementById('search-btn').click();
   }
 });
+
+// 드롭다운 기능
+window.onload = () => {
+  document.querySelector('.dropbtn_click').onclick = () => {
+    var v = document.querySelector('.dropdown-content');
+    v.classList.toggle('show');
+  }
+  document.getElementsByClassName('Category').onclick = () => {
+    showMenu(value);
+  };
+
+  showMenu = (value) => {
+    var dropbtn_content = document.querySelector('.dropbtn_content');
+    dropbtn_content.innerText = value;
+    getDate(value);
+  }
+
+  getDate('Popular');
+}
+window.onclick = (e) => {
+  if (!e.target.matches('.dropbtn_click')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
