@@ -72,6 +72,10 @@ function getDate(category) {
     .catch(err => console.error(err));
 }
 
+// 초기 화면
+window.onload = () => {
+  getDate('Popular');
+}
 
 // 검색 기능
 document.getElementById('search-btn').addEventListener('click', (search))
@@ -97,7 +101,6 @@ input.addEventListener('keyup', (event) => {
 });
 
 // 드롭다운 기능
-window.onload = () => {
   document.querySelector('.dropbtn_click').onclick = () => {
     var v = document.querySelector('.dropdown-content');
     v.classList.toggle('show');
@@ -112,8 +115,6 @@ window.onload = () => {
     getDate(value);
   }
 
-  getDate('Popular');
-}
 window.onclick = (e) => {
   if (!e.target.matches('.dropbtn_click')) {
     var dropdowns = document.getElementsByClassName("dropdown-content");
