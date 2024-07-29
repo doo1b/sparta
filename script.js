@@ -12,11 +12,12 @@ rollDown.addEventListener('click', () => {
 });
 
 // API 설정
+const API_KEY = '8a1ee9a057e8a63eba456f044358b889';
 const options = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4YTFlZTlhMDU3ZThhNjNlYmE0NTZmMDQ0MzU4Yjg4OSIsIm5iZiI6MTcyMTg4NTM5MC4zMTcyNzUsInN1YiI6IjY2YTA1YzQ0YzVlMjBkNjJhODE4YjY2YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nQ0URVVPKkB-7kjZ7vWV9UT8sw97cOmDYd0MtZySkMA'
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4YTFlZTlhMDU3ZThhNjNlYmE0NTZmMDQ0MzU4Yjg4OSIsIm5iZiI6MTcyMjIxODA5MS4yNTc2MDcsInN1YiI6IjY2YTA1YzQ0YzVlMjBkNjJhODE4YjY2YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dslmGcz9ZjoKMF-aQaOg4fxibzGMTPW_lJXI6edTSU4'
   }
 };
 
@@ -50,7 +51,7 @@ const categoryIds = {
 // 카드 뿌리기
 function getDate(category) {
   const id = categoryIds[category];
-  const url = `https://api.themoviedb.org/3/movie/${id}?language=ko-KR&page=1`;
+  const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=ko-KR&page=1&region=KR`;
   fetch(url, options)
     .then(response => response.json())
     .then(data => {
