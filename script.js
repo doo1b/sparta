@@ -89,17 +89,15 @@ window.onload = () => {
 // 검색 기능
 document.getElementById('search-btn').addEventListener('click', (search))
 function search() {
-  const query = document.querySelector('.search-input').value.toLowerCase();
-  const movieCards = document.querySelectorAll('.card');
-  movieCards.forEach(card => {
-    const title = card.querySelector('.movietitle').textContent.toLowerCase();
-    if (title.includes(query)) {
-      card.style.display = 'flex';
-    } else {
-      card.style.display = 'none';
-    }
-  });
+  const query = document.querySelector('.search-input').value.toLowerCase().trim();
+  const movieCards = Array.from(document.querySelectorAll('.card'));
+  movieCards.filter( card => {
+    const title = card.querySelector('.movietitle').textContent.toLowerCase().trim();
+    return !title.includes(query);
+  })
+  .map( card => card.style.display = 'none');
 };
+
 
 // 엔터로 검색 작동하기
 const input = document.querySelector('.search-input');
