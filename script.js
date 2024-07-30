@@ -86,7 +86,7 @@ window.onload = () => {
   getDate('Popular');
 }
 
-// 검색 기능
+// filter를 사용한 검색 기능
 document.getElementById('search-btn').addEventListener('click', (search))
 function search() {
   const query = document.querySelector('.search-input').value.toLowerCase().trim();
