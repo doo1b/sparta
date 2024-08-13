@@ -22,12 +22,9 @@ export function useMedalActions(initialMedals = []) {
   };
 
   const clickDel = (country) => {
-    setMedals((medal) => {
-      const medalCountry = medal.map((m) => m.country);
-      const findCountry = (e) => e === country;
-      return medal.splice(medalCountry.findIndex(findCountry), 1);
-    });
+    setMedals((medal) => medal.filter((m) => m.country !== country));
   };
+
   const emptyForm = (medal) => {
     const { country, gold, silver, bronze } = medal;
     if (country === "" || gold === "" || silver === "" || bronze === "") {
@@ -41,7 +38,6 @@ export function useMedalActions(initialMedals = []) {
     medals,
     add,
     update,
-    clickDel,
-    setMedals
+    clickDel
   };
 }
