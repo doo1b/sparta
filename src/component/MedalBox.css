@@ -1,0 +1,47 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #f3f3f3;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+}
+
+th {
+  background-color: #000000;
+  color: #fff;
+  font-weight: 700;
+}
+
+tr:nth-child(2n) {
+  background-color: #dfdfdf;
+}
+
+td {
+  vertical-align: middle;
+  color: #333;
+}
+
+td button {
+  background-color: #000000;
+  border: none;
+  padding: 5px 10px;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+td button:hover {
+  background-color: #b61212;
+}
+
+.mainBox p {
+  font-size: 18px;
+  color: #6b6b6b;
+}
