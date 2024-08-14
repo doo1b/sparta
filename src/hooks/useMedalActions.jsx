@@ -8,17 +8,15 @@ export function useMedalActions(initialMedals = []) {
   const add = (newMedal) => {
     if (emptyForm(newMedal)) return;
     countries.includes(newMedal.country)
-      ? alert("해당 국가가 이미 존재합니다")
-      : setMedals((medal) => [...medal, newMedal].sort((a, b) => b.gold - a.gold));
+      ? alert("해당 국가가 이미 존재합니다.")
+      : setMedals((medal) => [...medal, newMedal]);
   };
 
   const update = (newMedal) => {
     if (emptyForm(newMedal)) return;
     !countries.includes(newMedal.country)
-      ? alert("해당 국가가 존재하지 않습니다")
-      : setMedals((medal) =>
-          medal.map((m) => (m.country === newMedal.country ? newMedal : m)).sort((a, b) => b.gold - a.gold)
-        );
+      ? alert("해당 국가가 존재하지 않습니다.")
+      : setMedals((medal) => medal.map((m) => (m.country === newMedal.country ? newMedal : m)));
   };
 
   const clickDel = (country) => {
@@ -28,7 +26,7 @@ export function useMedalActions(initialMedals = []) {
   const emptyForm = (medal) => {
     const { country, gold, silver, bronze } = medal;
     if (country === "" || gold === "" || silver === "" || bronze === "") {
-      alert("모든 항목을 입력해주세요");
+      alert("모든 항목을 입력해주세요.");
       return true;
     }
     return false;

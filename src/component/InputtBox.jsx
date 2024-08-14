@@ -27,15 +27,45 @@ export function InputBox({
         </div>
         <div className="inputField">
           <label>금메달 </label>
-          <input type="number" value={gold} onChange={(e) => setGold(e.target.value)} placeholder="금메달 개수" />
+          <input
+            type="number"
+            value={gold}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (/^\d*$/.test(value)) {
+                setGold(value);
+              }
+            }}
+            placeholder="금메달 개수"
+          />
         </div>
         <div className="inputField">
           <label>은메달 </label>
-          <input type="number" value={silver} onChange={(e) => setSilver(e.target.value)} placeholder="은메달 개수" />
+          <input
+            type="number"
+            value={silver}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (/^\d*$/.test(value)) {
+                setSilver(value);
+              }
+            }}
+            placeholder="은메달 개수"
+          />
         </div>
         <div className="inputField">
           <label>동메달 </label>
-          <input type="number" value={bronze} onChange={(e) => setBronze(e.target.value)} placeholder="동메달 개수" />
+          <input
+            type="number"
+            value={bronze}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (/^\d*$/.test(value)) {
+                setBronze(value);
+              }
+            }}
+            placeholder="동메달 개수"
+          />
         </div>
         <div className="btnBox">
           <button type="button" onClick={onAdd}>

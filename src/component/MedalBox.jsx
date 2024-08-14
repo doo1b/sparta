@@ -16,17 +16,23 @@ export function MedalBox({ medals, onDelete }) {
           </tr>
         </thead>
         <tbody>
-          {medals.map((medal, index) => (
-            <tr key={index}>
-              <td>{medal.country}</td>
-              <td>{medal.gold}</td>
-              <td>{medal.silver}</td>
-              <td>{medal.bronze}</td>
-              <td>
-                <button onClick={() => onDelete(medal.country)}>삭제</button>
-              </td>
-            </tr>
-          ))}
+          {medals
+            .sort((a, b) => {
+              if (a.gold !== b.gold) return b.gold - a.gold;
+              else if (a.silver !== b.silver) return b.silver - a.silver;
+              else return b.bronze - a.bronze;
+            })
+            .map((medal, index) => (
+              <tr key={index}>
+                <td>{medal.country}</td>
+                <td>{medal.gold}</td>
+                <td>{medal.silver}</td>
+                <td>{medal.bronze}</td>
+                <td>
+                  <button onClick={() => onDelete(medal.country)}>삭제</button>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
     );
